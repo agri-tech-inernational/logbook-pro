@@ -26,7 +26,7 @@ export default function App() {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
         setUser(session.user);
-        if (session.user.email?.toLowerCase().includes('agritechinternationalfactory')) {
+        if (session.user.email?.toLowerCase() === 'agritech-production@hotmail.com') {
           setRole('SUPER_ADMIN');
         } else {
           const { data: profile } = await supabase
@@ -43,10 +43,10 @@ export default function App() {
     checkSession();
 
     // Listener for Auth Changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setUser(session?.user || null);
       if (session?.user) {
-        if (session.user.email?.toLowerCase().includes('agritechinternationalfactory')) {
+        if (session.user.email?.toLowerCase() === 'agritech-production@hotmail.com') {
           setRole('SUPER_ADMIN');
         } else {
           const { data: profile } = await supabase

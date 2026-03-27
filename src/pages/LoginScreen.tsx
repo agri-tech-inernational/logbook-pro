@@ -18,7 +18,7 @@ export default function LoginScreen() {
         if (signUpError) throw signUpError;
         if (!data.user) throw new Error('Sign up failed');
 
-        const defaultRole = email.toLowerCase().includes('agritechinternationalfactory') ? 'SUPER_ADMIN' : 'PENDING';
+        const defaultRole = email.toLowerCase() === 'agritech-production@hotmail.com' ? 'SUPER_ADMIN' : 'PENDING';
         
         const { error: profileError } = await supabase
           .from(tables.PROFILES)
@@ -36,7 +36,7 @@ export default function LoginScreen() {
           .eq('id', data.user.id)
           .single();
         
-        if (email.toLowerCase().includes('agritechinternationalfactory') && profile?.role !== 'SUPER_ADMIN') {
+        if (email.toLowerCase() === 'agritech-production@hotmail.com' && profile?.role !== 'SUPER_ADMIN') {
           await supabase.from(tables.PROFILES).update({ role: 'SUPER_ADMIN' }).eq('id', data.user.id);
         } else if (!profile) {
           await supabase.from(tables.PROFILES).insert({ id: data.user.id, email, role: 'PENDING' });
