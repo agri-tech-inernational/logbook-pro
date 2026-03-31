@@ -1,8 +1,8 @@
 {
   "name": "AgriTech Logbook",
   "short_name": "Logbook",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/logbook-pro/",
+  "scope": "/logbook-pro/",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#020617",
